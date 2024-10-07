@@ -1,0 +1,6 @@
+-- setting up sw bridge (before deploy. Done once)
+sudo ip link add sw1 type bridge
+sudo ip link set dev sw1 up
+
+-- setting up sw-host interface (done after every deploy)
+sudo ip addr add 10.0.1.3/24 dev sw-host 

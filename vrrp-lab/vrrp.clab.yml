@@ -1,0 +1,33 @@
+name: vrrp 
+
+topology:
+  defaults:
+    binds:
+      - ./start.sh:/start.sh 
+    exec:
+      - "./start.sh"
+  nodes:
+
+    sw1:
+      kind: bridge
+
+    rt-1:
+      kind: linux 
+      image: holo-local:latest
+      binds:
+        # - interfaces/rt-1:/etc/network/interfaces
+        - holo/rt-1:/etc/holo.startup
+
+    rt-2:
+      kind: holo-local:linux 
+      image: latest
+      binds:
+        # - interfaces/rt-2:/etc/network/interfaces
+        - holo/rt-2:/etc/holo.startup
+
+  links:
+    # 10.0.1.0/24
+    - endpoints: ["host:sw-host", "sw1:eth-h1"]
+    - endpoints: ["rt-1:eth-sw1", "sw1:eth-rt1"]
+    - endpoints: ["rt-2:eth-sw1", "sw1:eth-rt2"]
+

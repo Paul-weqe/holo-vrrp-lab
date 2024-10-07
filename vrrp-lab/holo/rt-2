@@ -1,0 +1,23 @@
+!
+interfaces interface eth-rt3
+ type iana-if-type:ethernetCsmacd
+ ipv4
+ !
+ ipv4 address 10.0.3.2
+  prefix-length 24
+!
+interfaces interface eth-sw1
+ type iana-if-type:ethernetCsmacd
+ ipv4
+ !
+ ipv4 address 10.0.1.2
+  prefix-length 24
+ !
+!
+interfaces interface lo
+ type iana-if-type:softwareLoopback
+ ipv4
+ !
+ ipv4 address 2.2.2.2
+  prefix-length 32
+!

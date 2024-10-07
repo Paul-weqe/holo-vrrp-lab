@@ -2,7 +2,10 @@
 
 # Building
 *This is how we create the docker image that will be used by containerlab*
+
+```bash 
 ./build.sh
+```
 
 # Running the lab 
 run the following commands:

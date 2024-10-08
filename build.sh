@@ -3,6 +3,7 @@
 git clone https://github.com/holo-routing/holo 
 cd holo 
 git checkout vrrp
+git pull
 
 mkdir docker/local
 cp ../Dockerfile docker/local/.

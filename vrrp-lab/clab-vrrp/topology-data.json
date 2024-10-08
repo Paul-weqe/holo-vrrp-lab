@@ -1,0 +1,155 @@
+{
+  "name": "vrrp",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-9266524488ca",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "2001:172:20:20::/64",
+        "ipv6-gw": "2001:172:20:20::1",
+        "mtu": 1500,
+        "external-access": true
+      }
+    }
+  },
+  "nodes": {
+    "rt-1": {
+      "index": "0",
+      "shortname": "rt-1",
+      "longname": "clab-vrrp-rt-1",
+      "fqdn": "rt-1.vrrp.io",
+      "group": "",
+      "labdir": "/home/waswa/fred/vrrp-lab/clab-vrrp/rt-1",
+      "kind": "linux",
+      "image": "local-holo:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9266524488ca",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/waswa/fred/vrrp-lab/clab-vrrp/rt-1",
+        "clab-node-name": "rt-1",
+        "clab-node-type": "",
+        "clab-owner": "waswa",
+        "clab-topo-file": "/home/waswa/fred/vrrp-lab/vrrp.clab.yml",
+        "containerlab": "vrrp"
+      },
+      "port-bindings": [
+      ]
+    },
+    "rt-2": {
+      "index": "1",
+      "shortname": "rt-2",
+      "longname": "clab-vrrp-rt-2",
+      "fqdn": "rt-2.vrrp.io",
+      "group": "",
+      "labdir": "/home/waswa/fred/vrrp-lab/clab-vrrp/rt-2",
+      "kind": "linux",
+      "image": "local-holo:latest",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9266524488ca",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/waswa/fred/vrrp-lab/clab-vrrp/rt-2",
+        "clab-node-name": "rt-2",
+        "clab-node-type": "",
+        "clab-owner": "waswa",
+        "clab-topo-file": "/home/waswa/fred/vrrp-lab/vrrp.clab.yml",
+        "containerlab": "vrrp"
+      },
+      "port-bindings": [
+      ]
+    },
+    "sw1": {
+      "index": "2",
+      "shortname": "sw1",
+      "longname": "clab-vrrp-sw1",
+      "fqdn": "sw1.vrrp.io",
+      "group": "",
+      "labdir": "/home/waswa/fred/vrrp-lab/clab-vrrp/sw1",
+      "kind": "bridge",
+      "image": "",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "",
+      "mgmt-ipv4-prefix-length": 0,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-9266524488ca",
+        "clab-node-group": "",
+        "clab-node-kind": "bridge",
+        "clab-node-lab-dir": "/home/waswa/fred/vrrp-lab/clab-vrrp/sw1",
+        "clab-node-name": "sw1",
+        "clab-node-type": "",
+        "clab-owner": "waswa",
+        "clab-topo-file": "/home/waswa/fred/vrrp-lab/vrrp.clab.yml",
+        "containerlab": "vrrp"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "sw1",
+        "interface": "eth-h1",
+        "mac": "aa:c1:ab:08:5d:1f",
+        "peer": "z"
+      },
+      "z": {
+        "node": "host",
+        "interface": "sw-host",
+        "mac": "aa:c1:ab:63:49:b9",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "rt-1",
+        "interface": "eth-sw1",
+        "mac": "aa:c1:ab:80:13:df",
+        "peer": "z"
+      },
+      "z": {
+        "node": "sw1",
+        "interface": "eth-rt1",
+        "mac": "aa:c1:ab:1e:af:f7",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "rt-2",
+        "interface": "eth-sw1",
+        "mac": "aa:c1:ab:26:b7:ac",
+        "peer": "z"
+      },
+      "z": {
+        "node": "sw1",
+        "interface": "eth-rt2",
+        "mac": "aa:c1:ab:46:fc:73",
+        "peer": "a"
+      }
+    }
+  ]
+}

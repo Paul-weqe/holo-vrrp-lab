@@ -1,3 +1,4 @@
+
 # Build image
 # ==============================================================================
 
@@ -19,8 +20,10 @@ RUN cargo build --release
 # holo-cli
 # ==============================================================================
 
-RUN git clone https://github.com/holo-routing/holo-cli.git /usr/src/holo-cli
+RUN git clone https://github.com/holo-routing/holo-cli.git /usr/src/holo-cli 
 WORKDIR /usr/src/holo-cli
+RUN git checkout ecfc30440afb3d20fa5cc8952460b8dffb52cf9f
+COPY ./docker/local/Cargo.toml /usr/src/holo-cli/Cargo.toml
 RUN cargo build --release
 
 # Final base

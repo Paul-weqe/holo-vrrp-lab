@@ -4,8 +4,12 @@ topology:
   defaults:
     binds:
       - ./start.sh:/start.sh 
+      - ./vrrp.sh:/vrrp.sh
+      - frr/daemons:/etc/frr/daemons
     exec:
       - "./start.sh"
+      - "./vrrp.sh"
+
   nodes:
 
     sw1:
@@ -13,17 +17,31 @@ topology:
 
     rt-1:
       kind: linux 
+
+      # ---- holod image ---- 
       image: local-holo:latest
+      
+      # ---- frr image ---- 
+      # image: quay.io/frrouting/frr:9.0.2
+
       binds:
-        # - interfaces/rt-1:/etc/network/interfaces
+        - interfaces/rt-1:/etc/network/interfaces 
         - holo/rt-1:/etc/holo.startup
+        - frr/rt-1:/etc/frr/frr.startup
 
     rt-2:
       kind: linux 
+
+      # ---- holod image ---- 
       image: local-holo:latest
+      
+      # ---- frr image ---- 
+      # image: quay.io/frrouting/frr:9.0.2
+
       binds:
-        # - interfaces/rt-2:/etc/network/interfaces
+        - interfaces/rt-2:/etc/network/interfaces 
         - holo/rt-2:/etc/holo.startup
+        - frr/rt-2:/etc/frr/frr.startup
 
   links:
     # 10.0.1.0/24

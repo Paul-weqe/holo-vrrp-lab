@@ -6,5 +6,7 @@ git checkout vrrp-rebase
 git pull
 
 # build local-holo
+rm -rf docker/Dockerfile
+cp -r ../Dockerfile docker/Dockerfile
 docker build -t local-holo -f docker/Dockerfile .
 
